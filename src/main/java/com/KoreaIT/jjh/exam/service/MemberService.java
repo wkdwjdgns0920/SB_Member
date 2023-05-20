@@ -17,32 +17,35 @@ public class MemberService {
 		this.memberRepository = memberRepository;
 	}
 
-	public ResultData join(String loginId, String loginPw, String name, String nickname, String cellphoneNum, String email) {
-		Member member = getMemberByLoginId(loginId);
-		
-		if(member != null) {
-			return ResultData.from("F-A", "이미 사용중인 아이디입니다");
+	public ResultData join(String email, String loginPw, String name, String nickname, String cellphoneNum) {
+		Member member = getMemberByEmail(email);
+
+		if (member != null) {
+			return ResultData.from("F-A", "이미 사용중인 이메일입니다");
 		}
-		
-		member = getMemberByEmail(email);
-		
-		if(member != null) {
-			return ResultData.from("F-B", "이미 사용중인 이메일 입니다");
-		}
-		
-		memberRepository.join(loginId, loginPw, name, nickname, cellphoneNum, email);
-		
+
+		memberRepository.join(email, loginPw, name, nickname, cellphoneNum);
+
 		return ResultData.from("S-1", "회원가입");
 	}
 
-	private Member getMemberByEmail(String email) {
-		
+	public Member getMemberByEmail(String email) {
+
 		return memberRepository.getMemberByEmail(email);
 	}
 
 	public Member getMemberByLoginId(String loginId) {
-		
+
 		return memberRepository.getMemberByLoginId(loginId);
 	}
 
+	public Member getMemberById(int id) {
+		return memberRepository.getMemberById(id);
+	}
+
+	public void modifyMember(String loginPw, String name, String nickname, String cellphoneNum,
+			int id) {
+		memberRepository.modifyMember(loginPw, name, nickname, cellphoneNum, id);
+
+	}
 }

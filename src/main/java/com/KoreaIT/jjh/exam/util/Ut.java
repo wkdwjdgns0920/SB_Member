@@ -3,6 +3,8 @@ package com.KoreaIT.jjh.exam.util;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.servlet.http.HttpServletRequest;
+
 public class Ut {
 
 	public static boolean validationPasswd(String pw){
@@ -27,8 +29,9 @@ public class Ut {
 		return err;
 	}
 
-	public static boolean empty(String str) {
-
+	public static boolean empty(Object obj) {
+		
+		String str = (String) obj;
 		return str.trim().length() == 0;
 	}
 

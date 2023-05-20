@@ -11,5 +11,8 @@
 <a href="../member/join">Join</a>
 <a href="../member/login">Login</a>
 <a href="../member/doLogout">Logout</a>
+<a href="../member/profile?id=${rq.getLoginedMemberId() }">Profile</a>
+<a href="../article/write">Write</a>
+<a href="../article/list">List</a>
 </body>
 </html>

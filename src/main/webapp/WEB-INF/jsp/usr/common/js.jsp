@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,10 +7,11 @@
 </head>
 <body>
 
-<script>
-	alert("로그인상태입니다");
-	history.back();
-</script>
+	<script>
+		var msg = '${msg}'.trim();
+		alert(msg);
+		history.back();
+	</script>
 
 </body>
 </html>

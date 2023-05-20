@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,114 +14,36 @@
 	<h1>Join</h1>
 
 	<script>
-		let submitJoinFormDone = false;
-		let validLoginId = "";
+		let submitJoinFormDone = false;	
 
-		/* function submitJoinForm(form) {
-			if (submitJoinFormDone) {
-				alert('처리중입니다@@');
-				return;
-			}
-			form.loginId.value = form.loginId.value.trim();
-			if (form.loginId.value == 0) {
-				alert('아이디를 입력해주세요');
-				return;
-			}
-
-			form.loginPw.value = form.loginPw.value.trim();
-			if (form.loginPw.value == 0) {
-				alert('비밀번호를 입력해주세요');
-				return;
-			}
-			form.loginPwConfirm.value = form.loginPwConfirm.value.trim();
-			if (form.loginPwConfirm.value == 0) {
-				alert('비밀번호 확인을 입력해주세요');
-				return;
-			}
-			if (form.loginPwConfirm.value != form.loginPw.value) {
-				alert('비밀번호가 일치하지 않습니다');
-				form.loginPw.focus();
-				return;
-			}
-			form.name.value = form.name.value.trim();
-			if (form.name.value == 0) {
-				alert('이름을 입력해주세요');
-				return;
-			}
-			form.nickname.value = form.nickname.value.trim();
-			if (form.nickname.value == 0) {
-				alert('닉네임을 입력해주세요');
-				return;
-			}
-			form.email.value = form.email.value.trim();
-			if (form.email.value == 0) {
-				alert('이메일을 입력해주세요');
-				return;
-			}
-
-			form.cellphoneNum.value = form.cellphoneNum.value.trim();
-			if (form.cellphoneNum.value == 0) {
-				alert('전화번호를 입력해주세요');
-				return;
-			}
-			submitJoinFormDone = true;
-			form.submit();
-		} */
-
-		function checkLoginIdDup(el) {
-			$('.checkDup-msg').empty();
+		function checkEmailDup(el) {
+			$('.emailDup-msg').empty();
 			const form = $(el).closest('form').get(0);
 
-			if (form.loginId.value.length == 0) {
-				validLoginId = '';
-				return;
-			}
-
-			if (validLoginId == form.loginId.value) {
-				return;
-			}
-
-			$.get('../member/getLoginIdDup', {
+			$.get('../member/getEmailDup', {
 				isAjax : 'Y',
-				loginId : form.loginId.value
+				email : form.email.value
 			}, function(data) {
 
 				if (data.success) {
-					$('.checkDup-msg').html(
+					$('.emailDup-msg').html(
 							'<div class="y">' + data.msg + '</div>')
-					validLoginId = data.data1;
 				} else {
-					$('.checkDup-msg').html(
+					$('.emailDup-msg').html(
 							'<div class="n">' + data.msg + '</div>')
-					validLoginId = '';
 				}
 
 			}, 'json');
 
 		}
-
-		/* function CheckEmail(el) { 
-			var email_rule = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-			
-			return email_rule.test(el);
-		} 
-		
-		function doCheckEmail(el){
-			if(CheckEmail(el) == false){
-				alert('이메일 형식이 올바르지 않습니다');
-			} else {
-				alert('사용가능!');
-			}
-		} */
 	</script>
 
 	<section class="joinSection">
 		<form action="../member/doJoin" method="POST" onsubmit="submitJoinForm(this); return false;">
 			<div class="joinBox">
-				<div class="">아이디</div>
-				<input onblur="checkLoginIdDup(this);" class="input" name="loginId" type="text" autocomplete="off"
-					placeholder="loginId" />
-				<div class="checkDup-msg"></div>
+				<div class="">이메일</div>
+				<input onblur="checkEmailDup(this)" class="input" name="email" type="text" autocomplete="off" placeholder="email" />
+				<div class="emailDup-msg"></div>
 				<div class="">비밀번호</div>
 				<input class="input" name="loginPw" type="text" autocomplete="off" placeholder="loginPw" />
 				<div class="">비번확인</div>
@@ -131,9 +54,6 @@
 				<input class="input" name="nickname" type="text" autocomplete="off" placeholder="nickname" />
 				<div class="">전화번호</div>
 				<input class="input" name="cellphoneNum" type="text" autocomplete="off" placeholder="cellphoneNum" />
-				<div class="">이메일</div>
-				<input onblur="" class="input" name="email" type="text" autocomplete="off" placeholder="email" />
-				<div class="emailDup-msg"></div>
 				<button class="submit_btn" type="submit">제출</button>
 			</div>
 		</form>

@@ -9,17 +9,18 @@
 <link rel="stylesheet" href="/resource/common.css" />
 </head>
 <body>
-	
-	<h1>Login</h1>
+
+	<h1>checkPw</h1>
 
 
 	<section class="joinSection">
-		<form action="../member/doLogin" method="POST" onsubmit="">
+		<form action="../member/doCheckPw" method="POST" onsubmit="">
 			<div class="joinBox">
-				<div class="">이메일</div>
-				<input class="input" name="email" type="text" autocomplete="off"
-					placeholder="loginId" />
-				<div class="checkDup-msg"></div>
+				<input type="hidden" value="${member.id }" name="id" />
+				<div class="input f-c">
+					<span class="">이메일 : </span>
+					<span class="">${member.email }</span>
+				</div>
 				<div class="">비밀번호</div>
 				<input class="input" name="loginPw" type="text" autocomplete="off" placeholder="loginPw" />
 				<button class="submit_btn" type="submit">제출</button>

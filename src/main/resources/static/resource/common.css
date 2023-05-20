@@ -32,3 +32,16 @@
 	color: blue;
 	background-color: white;
 }
+
+.border {
+	border: 1px solid black;
+}
+
+.mt_3 {
+	margin-top: 8px;
+}
+
+.f-c {
+	display: flex;
+	align-items: center;
+}
