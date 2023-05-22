@@ -21,7 +21,7 @@
 			</div>
 			<div>
 				<span>제목 : </span>
-				<span><input class="title" type="text" name="title" placeholder="제목을 입력해주세요" /></span>
+				<span><input class="" type="text" name="title" placeholder="제목을 입력해주세요" /></span>
 			</div>
 			<div>
 				<span>내용 : </span>
